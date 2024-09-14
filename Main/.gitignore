@@ -1,0 +1,12 @@
+# Visual Studio
+.vs/
+*.vsconfig
+
+# Unity
+Library/
+Temp/
+Logs/
+obj/
+*.csproj
+*.sln
+*.user
