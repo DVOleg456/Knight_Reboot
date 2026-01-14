@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     
 
     private Rigidbody2D rb;
+    private HealthSystem healthSystem; // Система здоровья игрока
 
     private float minMovingSpeed = 0.1f;
     private bool isRunning = false;
@@ -19,6 +20,13 @@ public class Player : MonoBehaviour
     {
         Instance = this;
         rb = GetComponent<Rigidbody2D>();
+
+
+        healthSystem = GetComponent<HealthSystem>();
+        if (healthSystem == null)
+        {
+            Debug.LogWarning("Player: HealthSystem не найден! Добавь компонент HealthSystem на игрока");
+        }
     }
     
 
@@ -54,5 +62,11 @@ public class Player : MonoBehaviour
     { 
         Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint (transform.position);
         return playerScreenPosition;
+    }
+
+    // Получить систему здоровья игрока
+    public HealthSystem GetHealthSystem()
+    {
+        return healthSystem;
     }
 }
