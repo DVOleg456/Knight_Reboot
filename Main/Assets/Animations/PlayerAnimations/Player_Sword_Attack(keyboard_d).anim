@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle
+  m_Name: Player_Sword_Attack(keyboard_d)
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,15 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 8d58da72118671948a1470c47b0beb41, type: 3}
-    - time: 0.51666665
-      value: {fileID: 21300000, guid: fc60b168fddb47546a97e61584d81c4a, type: 3}
-    - time: 0.96666664
-      value: {fileID: 21300000, guid: 6d6c00593d99a5e4abeb062b727ee1fb, type: 3}
-    - time: 1.4833333
-      value: {fileID: 21300000, guid: 3692ed9203ba6f8408fb488bc3039b1a, type: 3}
-    - time: 2.0166667
-      value: {fileID: 21300000, guid: 170ed64313c84a54c8920050cc1a1d48, type: 3}
+      value: {fileID: 21300000, guid: 5415b4cc5bc240647af77cc5f5a455ce, type: 3}
+    - time: 0.45
+      value: {fileID: 21300000, guid: cb78b9a5f7da9a7408ff1a1ebc99ddd3, type: 3}
+    - time: 0.8666667
+      value: {fileID: 21300000, guid: f8616f943de37b3498a0fb4ffd2f15d2, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -52,17 +48,15 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 8d58da72118671948a1470c47b0beb41, type: 3}
-    - {fileID: 21300000, guid: fc60b168fddb47546a97e61584d81c4a, type: 3}
-    - {fileID: 21300000, guid: 6d6c00593d99a5e4abeb062b727ee1fb, type: 3}
-    - {fileID: 21300000, guid: 3692ed9203ba6f8408fb488bc3039b1a, type: 3}
-    - {fileID: 21300000, guid: 170ed64313c84a54c8920050cc1a1d48, type: 3}
+    - {fileID: 21300000, guid: 5415b4cc5bc240647af77cc5f5a455ce, type: 3}
+    - {fileID: 21300000, guid: cb78b9a5f7da9a7408ff1a1ebc99ddd3, type: 3}
+    - {fileID: 21300000, guid: f8616f943de37b3498a0fb4ffd2f15d2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.0333333
+    m_StopTime: 0.8833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

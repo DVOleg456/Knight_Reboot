@@ -27,4 +27,19 @@ public class GameInput : MonoBehaviour
         Vector3 mousePos = Mouse.current.position.ReadValue();
         return mousePos;
     }
+
+    // Была ли нажата кнопка атаки (Space или ЛКМ)
+    public bool GetAttackButtonDown()
+    {
+        // Проверяем Space или левую кнопку мыши
+        return Keyboard.current.spaceKey.wasPressedThisFrame ||
+                Mouse.current.leftButton.wasPressedThisFrame;
+    }
+
+    // Удерживается ли кнопка атаки
+    public bool GetAttackButton()
+    {
+        return Keyboard.current.spaceKey.isPressed || 
+                Mouse.current.leftButton.isPressed;
+    }
 }
