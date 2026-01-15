@@ -11,6 +11,9 @@ public class PlayerCombat : MonoBehaviour
     [Tooltip("Точка откуда идёт атака (перед игроком)")]
     [SerializeField] private Transform attackPoint;
 
+    [Header("Визуал (опционально)")]
+    [SerializeField] private PlayerVisual playerVisual; // PlayerVisual для анимации атаки
+
     // Приватные переменные
     private bool isAttacking = false;
 
@@ -80,6 +83,12 @@ public class PlayerCombat : MonoBehaviour
         {
             isAttacking = true;
             Debug.Log($"PlayerCombat: Атака с {currentWeapon.GetWeaponName()}!");
+
+            // Запускаем анимацию атаки (если есть PlayerVisual)
+            if (playerVisual != null)
+            {
+                playerVisual.TriggerAttackAnimation();
+            }
 
             // Сбрасываем флаг атаки через короткое время
             Invoke(nameof(ResetAttacking), 0.5f);

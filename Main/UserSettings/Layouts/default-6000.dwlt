@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1280
     height: 629.3334
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 41
+  controlID: 117
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -357,14 +357,14 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: -3883438301512571513, guid: 4a3b7b97b1b144f4e832538caf51777a, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.80570877
+    - e00: 0.7739367
       e01: 0
       e02: 0
-      e03: 156.79782
+      e03: -30.763397
       e10: 0
-      e11: 0.80570877
+      e11: 0.7739367
       e12: 0
-      e13: -30.361614
+      e13: -17.977982
       e20: 0
       e21: 0
       e22: 1
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 442
+    y: 387.33334
     width: 981.6667
     height: 183.99997
   m_SerializedDataModeController:
@@ -436,7 +436,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Graphics/Shadow's_Quest/Trancfer_animation/Animation_Trancfer_calmness
+    - Assets/Graphics/Shadow's_Quest/Trancfer_animation/Animation_of_death
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -446,16 +446,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 75
   m_LastFolders:
-  - Assets/Graphics/Shadow's_Quest/Trancfer_animation/Animation_Trancfer_calmness
+  - Assets/Graphics/Shadow's_Quest/Trancfer_animation/Animation_of_death
   m_LastFoldersGridSize: 75
   m_LastProjectPath: C:\Users\DV_Oleg\Knight_Reboot\Main
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 251.99997}
-    m_SelectedIDs: be950000
-    m_LastClickedID: 38334
-    m_ExpandedIDs: 000000002c9500002e9500003095000094950000c095000000ca9a3b
+    scrollPos: {x: 0, y: 259}
+    m_SelectedIDs: d4950000
+    m_LastClickedID: 38356
+    m_ExpandedIDs: 000000002a9500002c9500002e950000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -484,7 +484,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002c9500002e95000030950000
+    m_ExpandedIDs: 000000002a9500002c9500002e950000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300005a66000020650000f86600006464000054660000766400007e6400005e800000786400007a6400003eaa000000000000606a00000c650000286700002e67000000660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -563,8 +563,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 982.6667
-    y: 78.66667
+    x: 983.6667
+    y: 24
     width: 296.3333
     height: 547.3333
   m_SerializedDataModeController:
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 78.66667
+    y: 24
     width: 181.66667
     height: 337.33334
   m_SerializedDataModeController:
@@ -630,7 +630,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 5ce5ffff
+      m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 08fbffff36940000
       m_RenameOverlay:
@@ -1331,8 +1331,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 182.66667
-    y: 78.66667
+    x: 183.66667
+    y: 24
     width: 798
     height: 337.33334
   m_SerializedDataModeController:
@@ -1377,7 +1377,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -1390,18 +1390,18 @@ MonoBehaviour:
       y: 21
       width: 798
       height: 316.33334
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 399, y: 158.16667}
+    m_Scale: {x: 1.0609, y: 1.0609}
+    m_Translation: {x: 399, y: 154.76613}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -399
-      y: -158.16667
-      width: 798
-      height: 316.33334
+      x: -376.09576
+      y: -145.88193
+      width: 752.1915
+      height: 298.17453
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1197, y: 506}
