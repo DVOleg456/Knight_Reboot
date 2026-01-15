@@ -251,9 +251,9 @@ MonoBehaviour:
   moveSpeed: 4
   attackDamage: 30
   attackCooldown: 2.5
-  detectionRange: 2
+  detectionRange: 6
   attackRange: 1.65
-  stopChaseDistance: 2.4
+  stopChaseDistance: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64

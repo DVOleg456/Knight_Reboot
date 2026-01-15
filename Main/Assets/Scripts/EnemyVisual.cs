@@ -54,7 +54,7 @@ public class EnemyVisual : MonoBehaviour
 
         UpdateMovementAnimation();
         UpdateFacingDirection();
-        UpdateAttackAnumation();
+        UpdateAttackAnimation();
     }
 
     // Обновление анимации движения
@@ -96,7 +96,7 @@ public class EnemyVisual : MonoBehaviour
     }
 
     // Обновление анимации атаки
-    private void UpdateAttackAnumation()
+    private void UpdateAttackAnimation()
     {
         if (enemy == null) return;
 
