@@ -31,8 +31,9 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private HealthSystem healthSystem;
     private Transform playerTransform;
+    private EnemyVisual enemyVisual; // Визуал для анимаций
 
-    // Состояние 
+    // Состояние
     private EnemyState currentState = EnemyState.Idle;
     private float lastAttackTime;
     private bool isAttacking = false;
@@ -43,8 +44,15 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         healthSystem = GetComponent<HealthSystem>();
 
+        // Получаем EnemyVisual (на дочернем объекте)
+        enemyVisual = GetComponentInChildren<EnemyVisual>();
+        if (enemyVisual == null)
+        {
+            Debug.LogWarning($"Enemy {name}: EnemyVisual не найден! Анимации не будут работать");
+        }
+
         // Настраиваем Rigidbody2D
-        rb.gravityScale = 0f; // Отключаем гравитацию для 2D сверху 
+        rb.gravityScale = 0f; // Отключаем гравитацию для 2D сверху
         rb.freezeRotation = true; // Не даём вращаться
     }
 
@@ -175,7 +183,13 @@ public class Enemy : MonoBehaviour
 
         Debug.Log($"Enemy {name}: Атака игрока! Урон: {attackDamage}");
 
-        // Проверяем попадание по игроку 
+        // Запускаем анимацию атаки
+        if (enemyVisual != null)
+        {
+            enemyVisual.TriggerAttackAnimation();
+        }
+
+        // Проверяем попадание по игроку
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayer);
 
         foreach (Collider2D hit in hits)
