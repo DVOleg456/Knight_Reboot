@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1280
     height: 629.3334
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Animator
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 117
+  controlID: 522
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 42
+  controlID: 523
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 43
+  controlID: 524
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: AnimatorControllerTool
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -271,15 +271,15 @@ MonoBehaviour:
     y: 0
     width: 800
     height: 363.33334
-  m_MinSize: {x: 202, y: 226}
+  m_MinSize: {x: 102, y: 126}
   m_MaxSize: {x: 4002, y: 4026}
-  m_ActualView: {fileID: 18}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
   - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 2
+  m_Selected: 2
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -338,8 +338,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Animator\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 182.66667
-    y: 78.66667
+    x: 183.66667
+    y: 24
     width: 798
     height: 337.33334
   m_SerializedDataModeController:
@@ -356,15 +356,66 @@ MonoBehaviour:
   m_ViewTransforms:
     m_KeySerializationHelper:
     - {fileID: -3883438301512571513, guid: 4a3b7b97b1b144f4e832538caf51777a, type: 2}
+    - {fileID: -4647731251498884582, guid: a4ef401801895264ca5f829a07839f65, type: 2}
+    - {fileID: 7912343898265439959, guid: f0a7e5dd9f74dc14184705af0379ff4c, type: 2}
+    - {fileID: 10734301944086925, guid: 19c29b36bf3b941488a20a0a96434626, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.7739367
+    - e00: 0.87280744
       e01: 0
       e02: 0
-      e03: -30.763397
+      e03: -19.59555
       e10: 0
-      e11: 0.7739367
+      e11: 0.87280744
       e12: 0
-      e13: -17.977982
+      e13: -47.183014
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.6916501
+      e01: 0
+      e02: 0
+      e03: 38.79921
+      e10: 0
+      e11: 0.6916501
+      e12: 0
+      e13: -5.2821045
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.6182863
+      e01: 0
+      e02: 0
+      e03: 47.092377
+      e10: 0
+      e11: 0.6182863
+      e12: 0
+      e13: -19.937347
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.64771926
+      e01: 0
+      e02: 0
+      e03: 124.614075
+      e10: 0
+      e11: 0.64771926
+      e12: 0
+      e13: 52.987724
       e20: 0
       e21: 0
       e22: 1
@@ -374,9 +425,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 4a3b7b97b1b144f4e832538caf51777a, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: a4ef401801895264ca5f829a07839f65, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -3883438301512571513, guid: 4a3b7b97b1b144f4e832538caf51777a, type: 2}
+  - m_Target: {fileID: -4647731251498884582, guid: a4ef401801895264ca5f829a07839f65, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -436,7 +487,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Graphics/Shadow's_Quest/Trancfer_animation/Animation_of_death
+    - Assets/Animations/Goblin
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -446,16 +497,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 75
   m_LastFolders:
-  - Assets/Graphics/Shadow's_Quest/Trancfer_animation/Animation_of_death
+  - Assets/Animations/Goblin
   m_LastFoldersGridSize: 75
   m_LastProjectPath: C:\Users\DV_Oleg\Knight_Reboot\Main
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 259}
-    m_SelectedIDs: d4950000
-    m_LastClickedID: 38356
-    m_ExpandedIDs: 000000002a9500002c9500002e950000
+    scrollPos: {x: 0, y: 111}
+    m_SelectedIDs: ec980000
+    m_LastClickedID: 39148
+    m_ExpandedIDs: 00000000fa950000fc950000fe950000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -484,7 +535,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002a9500002c9500002e950000
+    m_ExpandedIDs: 00000000fa950000fc950000fe950000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -585,7 +636,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 208.34999
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -632,7 +683,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 08fbffff36940000
+      m_ExpandedIDs: e6dbfeff92e2feff3a08ffff786cffffe4a5ffffd8ddffff08fbffff3e940000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1222,9 +1273,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -12.176398, y: 4.4357076, z: 0.05448161}
+    m_Target: {x: -2.0775988, y: 3.7513707, z: 0.034121104}
     speed: 2
-    m_Value: {x: -12.176398, y: 4.4357076, z: 0.05448161}
+    m_Value: {x: -2.0775988, y: 3.7513707, z: 0.034121104}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1274,9 +1325,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 3.6313474
+    m_Target: 3.982589
     speed: 2
-    m_Value: 3.6313474
+    m_Value: 3.982589
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1331,8 +1382,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 183.66667
-    y: 24
+    x: 182.66667
+    y: 78.66667
     width: 798
     height: 337.33334
   m_SerializedDataModeController:
@@ -1377,7 +1428,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 1
+    m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -1390,18 +1441,18 @@ MonoBehaviour:
       y: 21
       width: 798
       height: 316.33334
-    m_Scale: {x: 1.0609, y: 1.0609}
-    m_Translation: {x: 399, y: 154.76613}
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 399, y: 158.16667}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -376.09576
-      y: -145.88193
-      width: 752.1915
-      height: 298.17453
+      x: -399
+      y: -158.16667
+      width: 798
+      height: 316.33334
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1197, y: 506}

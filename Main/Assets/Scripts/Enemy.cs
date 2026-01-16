@@ -90,6 +90,22 @@ public class Enemy : MonoBehaviour
         UpdateAI();
     }
 
+    // Физическое обновление (для движения Rigidbody2D)
+    // ВАЖНО: Все изменения linearVelocity должны происходить здесь, а НЕ в Update()!
+    private void FixedUpdate()
+    {
+        // Движение только в состоянии Chase и если враг не мёртв
+        if (currentState == EnemyState.Chase && playerTransform != null && !healthSystem.IsDead())
+        {
+            MoveTowardsPlayer();
+        }
+        else if (currentState != EnemyState.Attack)
+        {
+            // В других состояниях (кроме атаки) останавливаемся
+            rb.linearVelocity = Vector2.zero;
+        }
+    }
+
     // Обновление искуственного интеллекта 
     private void UpdateAI()
     {
@@ -117,11 +133,7 @@ public class Enemy : MonoBehaviour
                 {
                     ChangeState(EnemyState.Idle);
                 }
-                else
-                {
-                    // Двигаемся к игроку
-                    MoveTowardsPlayer();
-                }
+                // Движение происходит в FixedUpdate()
                 break;
 
             case EnemyState.Attack:
@@ -160,6 +172,9 @@ public class Enemy : MonoBehaviour
     {
         Vector2 direction = (playerTransform.position - transform.position).normalized;
         rb.linearVelocity = direction * moveSpeed;
+
+        // Debug для проверки движения
+        Debug.Log($"{name}: Velocity={rb.linearVelocity.magnitude:F2}, Direction={direction}, Speed={moveSpeed}");
     }
 
     // Попытка атаки
