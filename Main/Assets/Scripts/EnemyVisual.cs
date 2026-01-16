@@ -11,6 +11,7 @@ public class EnemyVisual : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Enemy enemy;
     private HealthSystem healthSystem;
+    private Rigidbody2D rb; // Rigidbody2D для проверки движения
 
     // Параметры аниматора (должны совпадать с названиями в Animator Controller)
     private const string IS_MOVING = "IsMoving";
@@ -20,7 +21,6 @@ public class EnemyVisual : MonoBehaviour
 
     // Состояние
     private bool isDead = false;
-    private Vector3 lastPosition;
 
     // Инициализация
     private void Awake()
@@ -35,6 +35,13 @@ public class EnemyVisual : MonoBehaviour
             Debug.LogWarning($"EnemyVisual {name}: Enemy компонент не найден!");
         }
 
+        // Получаем Rigidbody2D (на родительском объекте)
+        rb = GetComponentInParent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.LogWarning($"EnemyVisual {name}: Rigidbody2D не найден!");
+        }
+
         // Получаем HealthSystem
         healthSystem = GetComponentInParent<HealthSystem>();
         if (healthSystem != null)
@@ -42,8 +49,6 @@ public class EnemyVisual : MonoBehaviour
             // Подписываемся на событие смерти
             healthSystem.OnDead += HealthSystem_OnDead;
         }
-
-        lastPosition = transform.position;
     }
 
     // Обновление 
@@ -60,16 +65,21 @@ public class EnemyVisual : MonoBehaviour
     // Обновление анимации движения
     private void UpdateMovementAnimation()
     {
-        if (enemy == null) return;
+        if (rb == null || animator == null) return;
 
-        // Проверяем двигается ли враг (сравниваем текущую позицию с предыдущей)
-        bool isMoving = Vector3.Distance(transform.position, lastPosition) > 0.01f;
+        // Проверяем двигается ли враг через скорость Rigidbody2D
+        bool isMoving = rb.linearVelocity.magnitude > 0.1f;
 
         animator.SetBool(IS_MOVING, isMoving);
-        lastPosition = transform.position;
+
+        // Дополнительный лог для отладки
+        if (isMoving)
+        {
+            Debug.Log($"EnemyVisual {name}: Движется! Velocity={rb.linearVelocity.magnitude:F2}");
+        }
     }
 
-    // Обновление направления взгляда 
+    // Обновление направления взгляда
     private void UpdateFacingDirection()
     {
         if (enemy == null) return;
@@ -78,13 +88,14 @@ public class EnemyVisual : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            // Направление к игроку
-            Vector3 directionToPlayer = player.transform.position - transform.position;
+            // Направление к игроку (используем позицию родительского объекта)
+            Vector3 enemyPosition = transform.parent != null ? transform.parent.position : transform.position;
+            Vector3 directionToPlayer = player.transform.position - enemyPosition;
 
             // Поворачиваем спрайт в сторону игрока
             if (directionToPlayer.x < -0.1f)
             {
-                // Игрок слева - отражаем спрайт 
+                // Игрок слева - отражаем спрайт
                 spriteRenderer.flipX = true;
             }
             else if (directionToPlayer.x > 0.1f)
