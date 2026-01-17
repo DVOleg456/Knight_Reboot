@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
             Debug.LogWarning("Player: PlayerVisual не найден! Убедись что он есть в дочерних объектах");
         }
     }
-    
+
 
     private void FixedUpdate()
     {
@@ -59,7 +59,15 @@ public class Player : MonoBehaviour
 
         Vector2 inputVector = GameInput.Instance.GetMovementVector();
 
-        rb.MovePosition(rb.position + inputVector * (movingSpeed * Time.fixedDeltaTime));
+        // Применяем множитель скорости от бонуса
+        float speedMultiplier = 1f;
+        BonusManager bonusManager = GetComponent<BonusManager>();
+        if (bonusManager != null)
+        {
+            speedMultiplier = bonusManager.GetSpeedMultiplier();
+        }
+
+        rb.MovePosition(rb.position + inputVector * (movingSpeed * speedMultiplier * Time.fixedDeltaTime));
 
         if (Mathf.Abs(inputVector.x) > minMovingSpeed || Mathf.Abs(inputVector.y) > minMovingSpeed)
         {
@@ -73,12 +81,12 @@ public class Player : MonoBehaviour
 
     public bool IsRunning()
     {
-        return isRunning;    
+        return isRunning;
     }
 
     public Vector3 GetPlayerScreenPosition()
     {
-        Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint (transform.position);
+        Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint(transform.position);
         return playerScreenPosition;
     }
 

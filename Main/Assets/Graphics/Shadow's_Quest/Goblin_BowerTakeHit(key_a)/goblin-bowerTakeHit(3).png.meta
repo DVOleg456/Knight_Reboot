@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      goblin-bowerTakeHit(3)_0: 4092387536973422574
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

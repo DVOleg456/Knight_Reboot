@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 5412928334179440583}
   - component: {fileID: 2344200399877712302}
   - component: {fileID: 1720659215872052704}
+  - component: {fileID: 8206454628441605107}
   - component: {fileID: 1597410423830880883}
   m_Layer: 0
   m_Name: Goblin
@@ -231,6 +232,19 @@ MonoBehaviour:
   _isAttackingEnemy: 0
   _attackingDistance: 2
   _attackRate: 2
+--- !u!114 &8206454628441605107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834364098453982910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb7b4cddd8cca44ea3ac72bc36a0c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!61 &1597410423830880883
 BoxCollider2D:
   m_ObjectHideFlags: 0

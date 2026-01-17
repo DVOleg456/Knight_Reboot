@@ -111,7 +111,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         currentWeapon = newWeapon;
-        
+
         if (currentWeapon != null)
         {
             currentWeapon.gameObject.SetActive(true);
@@ -132,11 +132,11 @@ public class PlayerCombat : MonoBehaviour
     }
 
     // Отладка
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     // Тестовая атака (вызывать из Inspector)
     [ContextMenu("Test: Attack")]
     public void TestAttack(){
         TryAttack();
     }
-    #endif
+#endif
 }

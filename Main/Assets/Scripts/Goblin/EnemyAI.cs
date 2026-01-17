@@ -7,20 +7,28 @@ using System;
 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Состояния")]
     [SerializeField] private State _startingState;
+
+    [Header("Роуминг")]
     [SerializeField] private float _roamingDistanceMax = 7f;
     [SerializeField] private float _roamingDistanceMin = 3f;
     [SerializeField] private float _roamingTimerMax = 2f;
+
+    [Header("Преследование")]
     [SerializeField] private bool _isChasingEnemy = false;
     [SerializeField] private float _chasingDistance = 4f;
     [SerializeField] private float _chasingSpeedMultiplayer = 2f;
 
+    [Header("Атака")]
     [SerializeField] private bool _isAttackingEnemy = false;
     [SerializeField] private float _attackingDistance = 2f;
     [SerializeField] private float _attackRate = 2f;
+    [SerializeField] private int _attackDamage = 10; // Урон от атаки врага
     private float _nextAttackTime = 0f;
 
     private NavMeshAgent _navMeshAgent;
+    private HealthSystem _healthSystem; // Система здоровья врага
     private State _currentState;
     private float _roamingTimer;
     private Vector3 _roamPosition;
@@ -33,7 +41,10 @@ public class EnemyAI : MonoBehaviour
     private float _checkDirectionDuration = 0.1f;
     private Vector3 _lastPosition;
 
+    // События
     public event EventHandler OnEnemyAttack;
+    public event EventHandler OnEnemyDeath;
+    public event EventHandler OnEnemyTakeHit;
 
     private enum State
     {
@@ -53,6 +64,50 @@ public class EnemyAI : MonoBehaviour
 
         _roamingSpeed = _navMeshAgent.speed;
         _chasingSpeed = _navMeshAgent.speed * _chasingSpeedMultiplayer;
+
+        // Получаем систему здоровья
+        _healthSystem = GetComponent<HealthSystem>();
+        if (_healthSystem != null)
+        {
+            _healthSystem.OnDead += HealthSystem_OnDead;
+            _healthSystem.OnDamaged += HealthSystem_OnDamaged;
+        }
+        else
+        {
+            Debug.LogWarning($"{gameObject.name}: HealthSystem не найден!");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Отписываемся от событий
+        if (_healthSystem != null)
+        {
+            _healthSystem.OnDead -= HealthSystem_OnDead;
+            _healthSystem.OnDamaged -= HealthSystem_OnDamaged;
+        }
+    }
+
+    // Обработка смерти врага
+    private void HealthSystem_OnDead(object sender, EventArgs e)
+    {
+        _currentState = State.Death;
+        _navMeshAgent.ResetPath();
+        _navMeshAgent.enabled = false;
+
+        // Вызываем событие смерти
+        OnEnemyDeath?.Invoke(this, EventArgs.Empty);
+
+        Debug.Log($"{gameObject.name}: Враг умер!");
+
+        // Уничтожаем врага через 2 секунды (после анимации)
+        Destroy(gameObject, 2f);
+    }
+
+    // Обработка получения урона
+    private void HealthSystem_OnDamaged(object sender, EventArgs e)
+    {
+        OnEnemyTakeHit?.Invoke(this, EventArgs.Empty);
     }
 
     private void Update()
@@ -158,7 +213,19 @@ public class EnemyAI : MonoBehaviour
     {
         if (Time.time > _nextAttackTime)
         {
+            // Вызываем событие атаки (для анимации)
             OnEnemyAttack?.Invoke(this, EventArgs.Empty);
+
+            // Наносим урон игроку
+            if (Player.Instance != null && !Player.Instance.IsDead())
+            {
+                HealthSystem playerHealth = Player.Instance.GetHealthSystem();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(_attackDamage);
+                    Debug.Log($"{gameObject.name}: Нанесён урон игроку ({_attackDamage} HP)");
+                }
+            }
 
             _nextAttackTime = Time.time + _attackRate;
         }
@@ -205,5 +272,23 @@ public class EnemyAI : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+    }
+
+    // Проверка состояния атаки
+    public bool IsAttacking()
+    {
+        return _currentState == State.Attacking;
+    }
+
+    // Проверка состояния смерти
+    public bool IsDead()
+    {
+        return _currentState == State.Death;
+    }
+
+    // Получить систему здоровья
+    public HealthSystem GetHealthSystem()
+    {
+        return _healthSystem;
     }
 }

@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerVisual : MonoBehaviour
 {
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private HealthSystem healthSystem;
 
     private const string IS_RUNNING = "IsRunning";
     private const string IS_DEAD = "IsDead";
+    private const string TAKE_HIT_TRIGGER = "TakeHit";
 
     private bool isDead = false;
 
@@ -16,6 +19,37 @@ public class PlayerVisual : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        // Подписываемся на получение урона игроком
+        if (Player.Instance != null)
+        {
+            healthSystem = Player.Instance.GetHealthSystem();
+            if (healthSystem != null)
+            {
+                healthSystem.OnDamaged += HealthSystem_OnDamaged;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Отписываемся от событий
+        if (healthSystem != null)
+        {
+            healthSystem.OnDamaged -= HealthSystem_OnDamaged;
+        }
+    }
+
+    // Обработчик получения урона
+    private void HealthSystem_OnDamaged(object sender, EventArgs e)
+    {
+        if (animator != null && !isDead)
+        {
+            animator.SetTrigger(TAKE_HIT_TRIGGER);
+        }
     }
 
     private void Update()

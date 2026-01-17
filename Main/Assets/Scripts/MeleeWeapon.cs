@@ -13,7 +13,18 @@ public class MeleeWeapon : Weapon
     {
         isAttacking = true;
 
-        Debug.Log($"{weaponName}: Атака! Урон: {damage}");
+        // Получаем множитель урона от бонуса
+        int finalDamage = damage;
+        if (Player.Instance != null)
+        {
+            BonusManager bonusManager = Player.Instance.GetComponent<BonusManager>();
+            if (bonusManager != null)
+            {
+                finalDamage = Mathf.RoundToInt(damage * bonusManager.GetDamageMultiplier());
+            }
+        }
+
+        Debug.Log($"{weaponName}: Атака! Урон: {finalDamage}");
 
         // Находим всех врагов в радиусе атаки
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
@@ -29,8 +40,8 @@ public class MeleeWeapon : Weapon
             HealthSystem enemyHealth = enemy.GetComponent<HealthSystem>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(damage);
-                Debug.Log($"{weaponName}: Нанесён урон {enemy.name} ({damage} HP)");
+                enemyHealth.TakeDamage(finalDamage);
+                Debug.Log($"{weaponName}: Нанесён урон {enemy.name} ({finalDamage} HP)");
             }
         }
 
@@ -58,12 +69,12 @@ public class MeleeWeapon : Weapon
     }
 
     // Отладка в редакторе
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     protected override void OnDrawGizmosSelected(){
         // Рисуем зону атаки красным кругом
         Gizmos.color = Color.red;
         Vector3 attackPos = attackPoint != null ? attackPoint.position : transform.position;
         Gizmos.DrawWireSphere(attackPos, attackRange);
     }
-    #endif
+#endif
 }
