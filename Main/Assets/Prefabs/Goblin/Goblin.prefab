@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5823765959735174772}
   - component: {fileID: 9190278273414869929}
   - component: {fileID: 7412798300540852037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GoblinVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,9 +138,9 @@ GameObject:
   - component: {fileID: 1720659215872052704}
   - component: {fileID: 8206454628441605107}
   - component: {fileID: 1597410423830880883}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,9 +229,10 @@ MonoBehaviour:
   _isChasingEnemy: 1
   _chasingDistance: 4
   _chasingSpeedMultiplayer: 2
-  _isAttackingEnemy: 0
-  _attackingDistance: 2
+  _isAttackingEnemy: 1
+  _attackingDistance: 1.5
   _attackRate: 2
+  _attackDamage: 10
 --- !u!114 &8206454628441605107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb7b4cddd8cca44ea3ac72bc36a0c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 50
 --- !u!61 &1597410423830880883
 BoxCollider2D:
   m_ObjectHideFlags: 0
