@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4317220967337869330}
   - component: {fileID: 5823765959735174772}
   - component: {fileID: 9190278273414869929}
+  - component: {fileID: 7412798300540852037}
   m_Layer: 0
   m_Name: GoblinVisual
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e40919e041ff8db4e962a4acd598b710, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -110,6 +111,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7412798300540852037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7247822680759310727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3acc0b3a6d4dac4488dfc39356de2f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyAI: {fileID: 1720659215872052704}
 --- !u!1 &8834364098453982910
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +153,7 @@ Transform:
   m_GameObject: {fileID: 8834364098453982910}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.48, y: 4.19, z: 0.036143877}
+  m_LocalPosition: {x: -9.092114, y: 4.1215706, z: 0.036143877}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -207,10 +221,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1edfcceccfc8ca408e950d1182fbb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: 1
-  roamingDistanceMax: 7
-  roamingDistanceMin: 3
-  roamingTimerMax: 2
+  _startingState: 1
+  _roamingDistanceMax: 7
+  _roamingDistanceMin: 3
+  _roamingTimerMax: 2
+  _isChasingEnemy: 1
+  _chasingDistance: 4
+  _chasingSpeedMultiplayer: 2
+  _isAttackingEnemy: 0
+  _attackingDistance: 2
+  _attackRate: 2
 --- !u!61 &1597410423830880883
 BoxCollider2D:
   m_ObjectHideFlags: 0
