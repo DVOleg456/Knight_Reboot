@@ -17,10 +17,12 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private Button restartButtonVictory;
     [SerializeField] private Button mainMenuButtonVictory;
     [SerializeField] private Button nextLevelButton;
+    [SerializeField] private Button epilogueButton; // Кнопка для перехода к эпилогу
 
     [Header("Настройки")]
     [SerializeField] private string mainMenuSceneName = "MainMenu";
     [SerializeField] private string nextLevelSceneName = "";
+    [SerializeField] private bool isFinalLevel = false; // Это финальный уровень?
 
     private void Start()
     {
@@ -72,11 +74,27 @@ public class GameOverUI : MonoBehaviour
             restartButtonVictory.onClick.AddListener(RestartLevel);
         if (mainMenuButtonVictory != null)
             mainMenuButtonVictory.onClick.AddListener(GoToMainMenu);
-        if (nextLevelButton != null)
+
+        // Если финальный уровень - показываем кнопку эпилога, иначе - кнопку следующего уровня
+        if (isFinalLevel)
         {
-            nextLevelButton.onClick.AddListener(GoToNextLevel);
-            // Показываем кнопку только если есть следующий уровень
-            nextLevelButton.gameObject.SetActive(!string.IsNullOrEmpty(nextLevelSceneName));
+            if (nextLevelButton != null)
+                nextLevelButton.gameObject.SetActive(false);
+            if (epilogueButton != null)
+            {
+                epilogueButton.gameObject.SetActive(true);
+                epilogueButton.onClick.AddListener(GoToEpilogue);
+            }
+        }
+        else
+        {
+            if (epilogueButton != null)
+                epilogueButton.gameObject.SetActive(false);
+            if (nextLevelButton != null)
+            {
+                nextLevelButton.onClick.AddListener(GoToNextLevel);
+                nextLevelButton.gameObject.SetActive(!string.IsNullOrEmpty(nextLevelSceneName));
+            }
         }
     }
 
@@ -166,6 +184,30 @@ public class GameOverUI : MonoBehaviour
         else
         {
             Debug.LogWarning($"GameOverUI: Сцена {nextLevelSceneName} не найдена!");
+        }
+    }
+
+    public void GoToEpilogue()
+    {
+        Debug.Log("GameOverUI: Переход к эпилогу");
+
+        Time.timeScale = 1f;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GoToEpilogue();
+        }
+        else
+        {
+            // Если нет GameManager, пробуем загрузить напрямую
+            if (Application.CanStreamedLevelBeLoaded("Epilogue"))
+            {
+                SceneManager.LoadScene("Epilogue");
+            }
+            else
+            {
+                Debug.LogWarning("GameOverUI: Сцена Epilogue не найдена!");
+            }
         }
     }
 }

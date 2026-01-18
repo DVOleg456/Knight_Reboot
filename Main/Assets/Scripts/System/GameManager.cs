@@ -10,11 +10,15 @@ public class GameManager : MonoBehaviour
     [Header("Настройки сцен")]
     [SerializeField] private string mainMenuSceneName = "MainMenu";
     [SerializeField] private string firstLevelSceneName = "Level_1";
+    [SerializeField] private string epilogueSceneName = "Epilogue"; // Финальная катсцена
 
     [Header("UI элементы")]
     [SerializeField] private GameObject gameOverPanel; // Панель Game Over
     [SerializeField] private GameObject victoryPanel; // Панель победы
     [SerializeField] private GameObject pausePanel; // Панель паузы
+
+    [Header("Настройки смертей")]
+    [SerializeField] private int maxDeaths = 1; // После скольких смертей → главное меню (0 = бесконечно)
 
     // События
     public event EventHandler OnGameOver;
@@ -25,6 +29,7 @@ public class GameManager : MonoBehaviour
     // Состояние игры
     private bool isGameOver = false;
     private bool isPaused = false;
+    private int deathCount = 0; // Счётчик смертей
 
     private void Awake()
     {
@@ -155,11 +160,36 @@ public class GameManager : MonoBehaviour
     // Перезапуск текущего уровня
     public void RestartLevel()
     {
+        // Увеличиваем счётчик смертей
+        deathCount++;
+        Debug.Log($"GameManager: Смерть #{deathCount}");
+
+        // Проверяем лимит смертей
+        if (maxDeaths > 0 && deathCount >= maxDeaths)
+        {
+            Debug.Log("GameManager: Достигнут лимит смертей! Переход в главное меню.");
+            GoToMainMenu();
+            return;
+        }
+
         Time.timeScale = 1f;
         isGameOver = false;
         isPaused = false;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // Сброс счётчика смертей (вызывать при начале новой игры)
+    public void ResetDeathCount()
+    {
+        deathCount = 0;
+        Debug.Log("GameManager: Счётчик смертей сброшен");
+    }
+
+    // Получить количество смертей
+    public int GetDeathCount()
+    {
+        return deathCount;
     }
 
     // Переход в главное меню
@@ -168,6 +198,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isGameOver = false;
         isPaused = false;
+        deathCount = 0; // Сбрасываем счётчик смертей
 
         if (Application.CanStreamedLevelBeLoaded(mainMenuSceneName))
         {
@@ -176,6 +207,26 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.LogWarning($"GameManager: Сцена {mainMenuSceneName} не найдена!");
+        }
+    }
+
+    // Переход к финальной катсцене (эпилог + титры)
+    public void GoToEpilogue()
+    {
+        Time.timeScale = 1f;
+        isGameOver = false;
+        isPaused = false;
+
+        Debug.Log("GameManager: Переход к эпилогу!");
+
+        if (Application.CanStreamedLevelBeLoaded(epilogueSceneName))
+        {
+            SceneManager.LoadScene(epilogueSceneName);
+        }
+        else
+        {
+            Debug.LogWarning($"GameManager: Сцена {epilogueSceneName} не найдена! Переход в главное меню.");
+            GoToMainMenu();
         }
     }
 
@@ -202,6 +253,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isGameOver = false;
         isPaused = false;
+        deathCount = 0; // Сбрасываем счётчик смертей при новой игре
 
         if (Application.CanStreamedLevelBeLoaded(firstLevelSceneName))
         {

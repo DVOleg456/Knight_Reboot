@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Телепорт для перехода между сценами/уровнями
+// Телепортер для перехода между сценами/уровнями
 public class Teleporter : MonoBehaviour
 {
     [Header("Настройки телепорта")]
@@ -51,10 +51,18 @@ public class Teleporter : MonoBehaviour
             teleportSound.Play();
         }
 
-        // Запускаем анимацию телепорта
+        // Запускаем анимацию телепорта (если есть аниматор с триггером "Activate")
         if (teleportAnimator != null)
         {
-            teleportAnimator.SetTrigger("Activate");
+            // Проверяем наличие параметра перед установкой
+            foreach (AnimatorControllerParameter param in teleportAnimator.parameters)
+            {
+                if (param.name == "Activate" && param.type == AnimatorControllerParameterType.Trigger)
+                {
+                    teleportAnimator.SetTrigger("Activate");
+                    break;
+                }
+            }
         }
 
         // Начинаем телепортацию с задержкой
