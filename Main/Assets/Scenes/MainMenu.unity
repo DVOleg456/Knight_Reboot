@@ -465,8 +465,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u041D\u0430\u0447\u0430\u0442\u044C \u0438\u0433\u0440\u0443"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 821f62b2822ba764fb3815d46062992c, type: 2}
+  m_sharedMaterial: {fileID: 1382316929842163917, guid: 821f62b2822ba764fb3815d46062992c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -490,10 +490,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 64
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -884,8 +884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0687d8aae210d8e478cbc8e3f5c34532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevelSceneName: Level_1
-  secondLevelSceneName: Level_2
+  firstLevelSceneName: Prologue
+  secondLevelSceneName: 
   startButton: {fileID: 860264454}
   continueButton: {fileID: 0}
   optionsButton: {fileID: 0}
@@ -950,8 +950,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0412\u044B\u0445\u043E\u0434 "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 821f62b2822ba764fb3815d46062992c, type: 2}
+  m_sharedMaterial: {fileID: 1382316929842163917, guid: 821f62b2822ba764fb3815d46062992c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
