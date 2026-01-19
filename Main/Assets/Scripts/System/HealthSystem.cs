@@ -15,10 +15,15 @@ public class HealthSystem : MonoBehaviour
     [Header("Настройки здоровья")]
     [SerializeField] private int maxHealth = 100; // Максимальное здоровье
 
+    [Header("Звуки")]
+    [SerializeField] private AudioClip hurtSound; // Звук получения урона
+    [SerializeField] private AudioClip deathSound; // Звук смерти
+    [SerializeField] private AudioClip healSound; // Звук исцеления
+
     // Приватные переменные
     private int currentHealth; // Текущее здоровье
     private bool isDead = false; // Мёртв ли персонаж
-    
+
     // Инициализация
     private void Awake()
     {
@@ -27,7 +32,7 @@ public class HealthSystem : MonoBehaviour
     }
 
     // Публичные методы (можно вызывать из других скриптов)
-    
+
     // Нанести урон персонажу
     public void TakeDamage(int damageAmount)
     {
@@ -36,9 +41,15 @@ public class HealthSystem : MonoBehaviour
 
         // Уменьшаем здоровье(не может быть меньше 0)
         currentHealth = currentHealth - damageAmount;
-        currentHealth = Mathf.Max(currentHealth, 0); 
+        currentHealth = Mathf.Max(currentHealth, 0);
 
         Debug.Log($"{gameObject.name} получил {damageAmount} урона! Осталось здоровья: {currentHealth}/{maxHealth}");
+
+        // Воспроизводим звук получения урона
+        if (hurtSound != null)
+        {
+            AudioSource.PlayClipAtPoint(hurtSound, transform.position, 0.8f);
+        }
 
         // Вызываем событие "получен урон"
         OnDamaged?.Invoke(this, EventArgs.Empty);
@@ -65,6 +76,12 @@ public class HealthSystem : MonoBehaviour
 
         Debug.Log($"{gameObject.name} восстановил {healAmount} здоровья! Текущее здоровье: {currentHealth}/{maxHealth}");
 
+        // Воспроизводим звук исцеления
+        if (healSound != null)
+        {
+            AudioSource.PlayClipAtPoint(healSound, transform.position, 0.7f);
+        }
+
         // Вызываем событие "вылечен"
         OnHealed?.Invoke(this, EventArgs.Empty);
 
@@ -79,6 +96,12 @@ public class HealthSystem : MonoBehaviour
 
         isDead = true;
         Debug.Log($"{gameObject.name} умер");
+
+        // Воспроизводим звук смерти
+        if (deathSound != null)
+        {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position, 1f);
+        }
 
         // Вызываем событие "смерть"
         OnDead?.Invoke(this, EventArgs.Empty);

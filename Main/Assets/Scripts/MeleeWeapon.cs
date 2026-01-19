@@ -8,6 +8,10 @@ public class MeleeWeapon : Weapon
     [SerializeField] private LayerMask enemyLayer; // Слой врагов
     [SerializeField] private Transform attackPoint; // Точка атаки (перед игроком)
 
+    [Header("Звуки")]
+    [SerializeField] private AudioClip swingSound; // Звук взмаха
+    [SerializeField] private AudioClip hitSound; // Звук попадания
+
     // Выполнение атаки
     protected override void PerformAttack()
     {
@@ -26,12 +30,24 @@ public class MeleeWeapon : Weapon
 
         Debug.Log($"{weaponName}: Атака! Урон: {finalDamage}");
 
+        // Воспроизводим звук взмаха
+        if (swingSound != null)
+        {
+            AudioSource.PlayClipAtPoint(swingSound, transform.position, 0.7f);
+        }
+        else if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySwordSwing();
+        }
+
         // Находим всех врагов в радиусе атаки
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             GetAttackPosition(),
             attackRange,
             enemyLayer
         );
+
+        bool hitAny = false;
 
         // Наносим урон каждому найденному врагу
         foreach (Collider2D enemy in hitEnemies)
@@ -42,6 +58,20 @@ public class MeleeWeapon : Weapon
             {
                 enemyHealth.TakeDamage(finalDamage);
                 Debug.Log($"{weaponName}: Нанесён урон {enemy.name} ({finalDamage} HP)");
+                hitAny = true;
+            }
+        }
+
+        // Воспроизводим звук попадания если попали
+        if (hitAny)
+        {
+            if (hitSound != null)
+            {
+                AudioSource.PlayClipAtPoint(hitSound, transform.position, 0.8f);
+            }
+            else if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySwordHit();
             }
         }
 

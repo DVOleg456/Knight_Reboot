@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Состояния")]
     [SerializeField] private State _startingState;
 
-    [Header("Роуминг")]
+    [Header("Роуминг или же враг бродит")]
     [SerializeField] private float _roamingDistanceMax = 7f;
     [SerializeField] private float _roamingDistanceMin = 3f;
     [SerializeField] private float _roamingTimerMax = 2f;
@@ -26,6 +26,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _attackRate = 2f;
     [SerializeField] private int _attackDamage = 10; // Урон от атаки врага
     private float _nextAttackTime = 0f;
+
+    [Header("Звуки")]
+    [SerializeField] private AudioClip _attackSound;
+    [SerializeField] private AudioClip _hurtSound;
+    [SerializeField] private AudioClip _deathSound;
 
     private NavMeshAgent _navMeshAgent;
     private HealthSystem _healthSystem; // Система здоровья врага
@@ -98,6 +103,16 @@ public class EnemyAI : MonoBehaviour
         // Вызываем событие смерти
         OnEnemyDeath?.Invoke(this, EventArgs.Empty);
 
+        // Воспроизводим звук смерти
+        if (_deathSound != null)
+        {
+            AudioSource.PlayClipAtPoint(_deathSound, transform.position, 0.8f);
+        }
+        else if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayEnemyDeath();
+        }
+
         Debug.Log($"{gameObject.name}: Враг умер!");
 
         // Уничтожаем врага через 2 секунды (после анимации)
@@ -108,6 +123,16 @@ public class EnemyAI : MonoBehaviour
     private void HealthSystem_OnDamaged(object sender, EventArgs e)
     {
         OnEnemyTakeHit?.Invoke(this, EventArgs.Empty);
+
+        // Воспроизводим звук получения урона
+        if (_hurtSound != null)
+        {
+            AudioSource.PlayClipAtPoint(_hurtSound, transform.position, 0.7f);
+        }
+        else if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayEnemyHurt();
+        }
     }
 
     private void Update()
@@ -215,6 +240,16 @@ public class EnemyAI : MonoBehaviour
         {
             // Вызываем событие атаки (для анимации)
             OnEnemyAttack?.Invoke(this, EventArgs.Empty);
+
+            // Воспроизводим звук атаки
+            if (_attackSound != null)
+            {
+                AudioSource.PlayClipAtPoint(_attackSound, transform.position, 0.6f);
+            }
+            else if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlayEnemyAttack();
+            }
 
             // Наносим урон игроку
             if (Player.Instance != null && !Player.Instance.IsDead())
