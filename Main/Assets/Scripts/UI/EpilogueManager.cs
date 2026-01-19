@@ -49,65 +49,65 @@ public class EpilogueManager : MonoBehaviour
 
     // Титры
     private string creditsText = @"
-
+ 
 <size=80%>S H A D O W ' S   Q U E S T</size>
-
-
+ 
+ 
 <size=60%>РАЗРАБОТКА</size>
-
+ 
 Программирование
 Хальченко Олег
 (тг @Khalchenko_Oleg)
-
+ 
 Шокиров Зик
 (тг @aryanR1a)
-
+ 
 Геймдизайн
 Хальченко Олег
 (тг @Khalchenko_Oleg)
-
+ 
 Художник
 Хальченко Олег
 (тг @Khalchenko_Oleg)
-
-
+ 
+ 
 <size=60%>ГРАФИКА</size>
-
+ 
 Персонажи и анимации
 Shadow's Quest Asset Pack
-
+ 
 Тайлсеты и окружение
 Shadow's Quest Asset Pack
-
-
+ 
+ 
 <size=60%>МУЗЫКА И ЗВУКИ</size>
-
+ 
 Музыкальное оформление
-1. Adventure by Alexander Nakarada | 
+1. Adventure by Alexander Nakarada |
 https://creatorchords.com
 Music promoted by https://www.chosic.com/free-music/all/
 Attribution 4.0 International (CC BY 4.0)
 https://creativecommons.org/licenses/by/4.0/
-
-2. The Great Battle by Alexander Nakarada | 
+ 
+2. The Great Battle by Alexander Nakarada |
 https://creatorchords.com
 Attribution 4.0 International (CC BY 4.0)
 https://creativecommons.org/licenses/by/4.0/
 Music promoted by https://www.chosic.com/free-music/all/
-
-3. Glory Eternal by Darren Curtis | 
+ 
+3. Glory Eternal by Darren Curtis |
 https://www.darrencurtismusic.com/
 Music promoted by https://www.chosic.com/free-music/all/
 Creative Commons CC BY 3.0
 https://creativecommons.org/licenses/by/3.0/
  
-4. EpicBattle J by PeriTune | 
+4. EpicBattle J by PeriTune |
 https://peritune.com/
 Music promoted by https://www.chosic.com/free-music/all/
 Creative Commons CC BY 4.0
 https://creativecommons.org/licenses/by/4.0/
  
-5. Charlotte by Damiano Baldoni | 
+5. Charlotte by Damiano Baldoni |
 https://soundcloud.com/damiano_baldoni
 Music promoted by https://www.chosic.com/free-music/all/
 Creative Commons CC BY 4.0
@@ -115,38 +115,38 @@ https://creativecommons.org/licenses/by/4.0/
  
 Звуковые эффекты
 [Источник звуков]
-
-
-<size=60%>ОСОБАЯ БЛАГОДАРНОСТЬ</size>
-
-Unity Technologies
+ 
+ 
+<size=60%>Благодарности</size>
+ 
+Спасибо Unity Technologies
 За потрясающий игровой движок
-
-Особая благодарность за видеокурс 
+ 
+Особая благодарность за видеокурс
 по программированию
-ютуберу TinyGames, 
+ютуберу TinyGames,
 название курса:
 2D Unity Game | Knight Adventure
-
-А также огромная благодарность 
-за гайд по созданию Tilemap в Aseprite 
+ 
+А также огромная благодарность
+за гайд по созданию Tilemap в Aseprite
 ютуберу NIBICU, название курса:
 Aseprite | Гайды | Рисования
-
+ 
 И благодарю всех игроков
 За то, что играете в нашу игру!
-
-
+ 
+ 
 <size=60%>ИНСТРУМЕНТЫ</size>
-
+ 
 Unity 6
 TextMeshPro
 Visual Studio Code
 Visual Studio Community 2026
 Aseprite
 Claude Code
-
-
+Nano Banana(задний фон главного меню)
+ 
 ";
 
     private bool isSkipping = false;
