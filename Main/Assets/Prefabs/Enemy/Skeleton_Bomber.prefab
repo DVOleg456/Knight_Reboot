@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  hurtSound: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: 845bb4338e736dc4f930cd2dfe2166f4, type: 3}
   deathSound: {fileID: 0}
   healSound: {fileID: 0}
 --- !u!61 &1703480235511385889
@@ -359,6 +359,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8467348917242115131, guid: ad2f4b58379694045948738a7c579a46, type: 3}
+      propertyPath: explosionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 236415d849f9dfd4193f59e3b427fe78, type: 3}
     - target: {fileID: 8467348917242115131, guid: ad2f4b58379694045948738a7c579a46, type: 3}
       propertyPath: spriteRenderer
       value: 

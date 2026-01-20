@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2a8de1e06902f4a9379a6c3b26a35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: 
+  targetSceneName: Level_2
   isFinalTeleporter: 0
   mainMenuSceneName: MainMenu
   teleportAnimator: {fileID: 2974661834551602596}

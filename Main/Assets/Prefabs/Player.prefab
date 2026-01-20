@@ -78,6 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  hurtSound: {fileID: 8300000, guid: 845bb4338e736dc4f930cd2dfe2166f4, type: 3}
+  deathSound: {fileID: 0}
+  healSound: {fileID: 0}
 --- !u!114 &5003782674797910080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +209,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackPoint: {fileID: 8532825060234435022}
+  swingSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 11f923dbefdb4604eb9ff55f1eb274d4, type: 3}
 --- !u!1 &6602578673377551665
 GameObject:
   m_ObjectHideFlags: 0

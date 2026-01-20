@@ -238,7 +238,7 @@ MonoBehaviour:
   _attackDamage: 15
   _arrowPrefab: {fileID: 3620105002610167301, guid: 036756840611fa94fa36766fb458e596, type: 3}
   _shootPoint: {fileID: 3425424506271693481}
-  _shootSound: {fileID: 0}
+  _shootSound: {fileID: 8300000, guid: 8031c09a3f4ed174caff514945aebf08, type: 3}
 --- !u!114 &8020927113735685075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  hurtSound: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: 845bb4338e736dc4f930cd2dfe2166f4, type: 3}
   deathSound: {fileID: 0}
   healSound: {fileID: 0}
 --- !u!61 &7543441637665201236
