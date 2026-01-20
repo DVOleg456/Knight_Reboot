@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Телепортер для перехода между сценами/уровнями
+// РўРµР»РµРїРѕСЂС‚РµСЂ РґР»СЏ РїРµСЂРµС…РѕРґР° РјРµР¶РґСѓ СЃС†РµРЅР°РјРё/СѓСЂРѕРІРЅСЏРјРё
 public class Teleporter : MonoBehaviour
 {
-    [Header("Настройки телепорта")]
-    [SerializeField] private string targetSceneName; // Имя сцены для перехода
-    [SerializeField] private bool isFinalTeleporter = false; // Это финальный телепортер (конец игры)?
-    [SerializeField] private string mainMenuSceneName = "MainMenu"; // Имя сцены главного меню
+    [Header("РќР°СЃС‚СЂРѕР№РєРё С‚РµР»РµРїРѕСЂС‚Р°")]
+    [SerializeField] private string targetSceneName;
+    [SerializeField] private bool isFinalTeleporter = false;
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
 
-    [Header("Визуальные настройки")]
-    [SerializeField] private Animator teleportAnimator; // Аниматор телепорта (опционально)
-    [SerializeField] private float teleportDelay = 1f; // Задержка перед телепортацией
+    [Header("Р’РёР·СѓР°Р»СЊРЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё")]
+    [SerializeField] private Animator teleportAnimator;
+    [SerializeField] private float teleportDelay = 1f;
 
-    [Header("Звуковые эффекты")]
-    [SerializeField] private AudioSource teleportSound; // Звук телепортации (опционально)
+    [Header("Р—РІСѓРєРѕРІС‹Рµ СЌС„С„РµРєС‚С‹")]
+    [SerializeField] private AudioSource teleportSound;
 
     private bool isActivated = false;
     private Collider2D teleportCollider;
@@ -30,7 +30,6 @@ public class Teleporter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Проверяем что это игрок и телепорт ещё не активирован
         if (isActivated) return;
 
         if (other.CompareTag("Player") || other.GetComponent<Player>() != null)
@@ -43,18 +42,15 @@ public class Teleporter : MonoBehaviour
     {
         isActivated = true;
 
-        Debug.Log($"Teleporter: Игрок вошёл в телепорт!");
+        Debug.Log($"Teleporter: РРіСЂРѕРє РІРѕС€С‘Р» РІ С‚РµР»РµРїРѕСЂС‚!");
 
-        // Воспроизводим звук телепортации
         if (teleportSound != null)
         {
             teleportSound.Play();
         }
 
-        // Запускаем анимацию телепорта (если есть аниматор с триггером "Activate")
         if (teleportAnimator != null)
         {
-            // Проверяем наличие параметра перед установкой
             foreach (AnimatorControllerParameter param in teleportAnimator.parameters)
             {
                 if (param.name == "Activate" && param.type == AnimatorControllerParameterType.Trigger)
@@ -65,7 +61,6 @@ public class Teleporter : MonoBehaviour
             }
         }
 
-        // Начинаем телепортацию с задержкой
         Invoke(nameof(PerformTeleport), teleportDelay);
     }
 
@@ -73,53 +68,46 @@ public class Teleporter : MonoBehaviour
     {
         if (isFinalTeleporter)
         {
-            // Финальный телепортер - конец игры
-            Debug.Log("Teleporter: Это финальный телепортер! Игра окончена.");
+            Debug.Log("Teleporter: Р­С‚Рѕ С„РёРЅР°Р»СЊРЅС‹Р№ С‚РµР»РµРїРѕСЂС‚РµСЂ! РРіСЂР° РѕРєРѕРЅС‡РµРЅР°.");
 
-            // Вызываем событие конца игры через GameManager
             if (GameManager.Instance != null)
             {
-                GameManager.Instance.EndGame(true); // true = победа
+                GameManager.Instance.EndGame(true);
             }
             else
             {
-                // Если нет GameManager, просто переходим в главное меню
                 LoadScene(mainMenuSceneName);
             }
         }
         else
         {
-            // Переход на другой уровень
             if (!string.IsNullOrEmpty(targetSceneName))
             {
-                Debug.Log($"Teleporter: Переход на уровень {targetSceneName}");
+                Debug.Log($"Teleporter: РџРµСЂРµС…РѕРґ РЅР° СѓСЂРѕРІРµРЅСЊ {targetSceneName}");
                 LoadScene(targetSceneName);
             }
             else
             {
-                Debug.LogWarning("Teleporter: Не указана целевая сцена!");
+                Debug.LogWarning("Teleporter: РќРµ СѓРєР°Р·Р°РЅР° С†РµР»РµРІР°СЏ СЃС†РµРЅР°!");
             }
         }
     }
 
     private void LoadScene(string sceneName)
     {
-        // Проверяем существует ли сцена
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
             SceneManager.LoadScene(sceneName);
         }
         else
         {
-            Debug.LogError($"Teleporter: Сцена '{sceneName}' не найдена! Проверь Build Settings.");
+            Debug.LogError($"Teleporter: РЎС†РµРЅР° '{sceneName}' РЅРµ РЅР°Р№РґРµРЅР°! РџСЂРѕРІРµСЂСЊ Build Settings.");
         }
     }
 
-    // Отладка в редакторе
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        // Рисуем зону телепорта
         Gizmos.color = isFinalTeleporter ? Color.yellow : Color.cyan;
 
         Collider2D col = GetComponent<Collider2D>();
@@ -132,5 +120,5 @@ public class Teleporter : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, 1f);
         }
     }
-#endif
+    #endif
 }

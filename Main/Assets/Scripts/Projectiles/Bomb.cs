@@ -188,48 +188,77 @@ public class Bomb : Projectile
     {
         if (!isActive) return;
         isActive = false;
- 
-        Debug.Log($"Bomb: Взрыв! Радиус: {explosionRadius}, Урон: {damage}");
- 
+
+        // Сохраняем позицию взрыва до уничтожения объекта
+        Vector3 explosionPosition = transform.position;
+
+        Debug.Log($"Bomb: Взрыв на позиции {explosionPosition}! Радиус: {explosionRadius}, Урон: {damage}");
+
         // Воспроизводим звук взрыва
         if (explosionSound != null)
         {
-            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+            AudioSource.PlayClipAtPoint(explosionSound, explosionPosition, 1f);
         }
- 
-        // Создаём эффект взрыва
-        if (explosionEffectPrefab != null)
+        else if (SoundManager.Instance != null)
         {
-            GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
-            // Активируем эффект (prefab или дочерний объект может быть неактивен)
-            effect.SetActive(true);
-            Destroy(effect, 2f);
+            SoundManager.Instance.PlayBombExplosion();
         }
- 
+
+        // Создаём эффект взрыва
+        CreateExplosionEffect(explosionPosition);
+
         // Находим всех в радиусе взрыва
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius, targetLayer);
- 
+        Collider2D[] hits = Physics2D.OverlapCircleAll(explosionPosition, explosionRadius, targetLayer);
+
         foreach (Collider2D hit in hits)
         {
             // Не наносим урон владельцу
             if (owner != null && hit.gameObject == owner) continue;
- 
+
             // Наносим урон
             HealthSystem healthSystem = hit.GetComponent<HealthSystem>();
             if (healthSystem != null)
             {
                 // Урон уменьшается с расстоянием
-                float distance = Vector2.Distance(transform.position, hit.transform.position);
+                float distance = Vector2.Distance(explosionPosition, hit.transform.position);
                 float damageMultiplier = 1f - (distance / explosionRadius) * 0.5f; // 50% урона на краю
                 int finalDamage = Mathf.RoundToInt(damage * damageMultiplier);
- 
+
                 healthSystem.TakeDamage(finalDamage);
                 Debug.Log($"Bomb: Нанесён урон {finalDamage} объекту {hit.name}");
             }
         }
- 
+
         // Уничтожаем бомбу
         Destroy(gameObject);
+    }
+
+    // Создание эффекта взрыва (вынесено в отдельный метод для надёжности)
+    private void CreateExplosionEffect(Vector3 position)
+    {
+        if (explosionEffectPrefab == null) return;
+
+        try
+        {
+            // Создаём копию эффекта в мировом пространстве
+            GameObject effect = Instantiate(explosionEffectPrefab, position, Quaternion.identity);
+
+            // Гарантируем что эффект отвязан от родителя и активен
+            effect.transform.SetParent(null);
+            effect.SetActive(true);
+
+            // Устанавливаем масштаб эффекта
+            effect.transform.localScale = Vector3.one * 2f;
+
+            Debug.Log($"Bomb: Создан эффект взрыва на позиции {position}");
+
+            // Уничтожаем эффект через 2 секунды
+            Destroy(effect, 2f);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Bomb: Ошибка создания эффекта взрыва: {e.Message}");
+        }
     }
  
     // Получить радиус взрыва
