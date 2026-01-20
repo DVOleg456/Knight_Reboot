@@ -1,56 +1,56 @@
 using UnityEngine;
 using System.Collections.Generic;
-
-// Менеджер звуков - синглтон для воспроизведения звуковых эффектов
+ 
+// РњРµРЅРµРґР¶РµСЂ Р·РІСѓРєРѕРІ - СЃРёРЅРіР»С‚РѕРЅ РґР»СЏ РІРѕСЃРїСЂРѕРёР·РІРµРґРµРЅРёСЏ Р·РІСѓРєРѕРІС‹С… СЌС„С„РµРєС‚РѕРІ
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
-
-    [Header("Настройки")]
+ 
+    [Header("РќР°СЃС‚СЂРѕР№РєРё")]
     [SerializeField] private float _masterVolume = 1f;
     [SerializeField] private float _sfxVolume = 1f;
     [SerializeField] private int _maxSimultaneousSounds = 10;
-
-    [Header("Звуки игрока")]
+ 
+    [Header("Р—РІСѓРєРё РёРіСЂРѕРєР°")]
     [SerializeField] private AudioClip[] _swordSwingSounds;
     [SerializeField] private AudioClip[] _swordHitSounds;
     [SerializeField] private AudioClip[] _footstepSounds;
     [SerializeField] private AudioClip[] _playerHurtSounds;
     [SerializeField] private AudioClip _playerDeathSound;
-
-    [Header("Звуки врагов")]
+ 
+    [Header("Р—РІСѓРєРё РІСЂР°РіРѕРІ")]
     [SerializeField] private AudioClip[] _enemyHurtSounds;
     [SerializeField] private AudioClip[] _enemyDeathSounds;
     [SerializeField] private AudioClip[] _enemyAttackSounds;
-
-    [Header("Звуки снарядов")]
+ 
+    [Header("Р—РІСѓРєРё СЃРЅР°СЂСЏРґРѕРІ")]
     [SerializeField] private AudioClip _arrowShootSound;
     [SerializeField] private AudioClip _arrowHitSound;
     [SerializeField] private AudioClip _bombThrowSound;
     [SerializeField] private AudioClip _bombExplosionSound;
-
-    [Header("Звуки интерфейса")]
+ 
+    [Header("Р—РІСѓРєРё РёРЅС‚РµСЂС„РµР№СЃР°")]
     [SerializeField] private AudioClip _buttonClickSound;
     [SerializeField] private AudioClip _pickupSound;
-
-    // Пул аудио источников
+ 
+    // РџСѓР» Р°СѓРґРёРѕ РёСЃС‚РѕС‡РЅРёРєРѕРІ
     private List<AudioSource> _audioSourcePool = new List<AudioSource>();
     private int _currentPoolIndex = 0;
-
+ 
     private void Awake()
     {
-        // Синглтон
+        // РЎРёРЅРіР»С‚РѕРЅ
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-
-        // Создаём пул аудио источников
+ 
+        // РЎРѕР·РґР°С‘Рј РїСѓР» Р°СѓРґРёРѕ РёСЃС‚РѕС‡РЅРёРєРѕРІ
         CreateAudioSourcePool();
     }
-
+ 
     private void CreateAudioSourcePool()
     {
         for (int i = 0; i < _maxSimultaneousSounds; i++)
@@ -60,11 +60,11 @@ public class SoundManager : MonoBehaviour
             _audioSourcePool.Add(source);
         }
     }
-
-    // Получить свободный аудио источник из пула
+ 
+    // РџРѕР»СѓС‡РёС‚СЊ СЃРІРѕР±РѕРґРЅС‹Р№ Р°СѓРґРёРѕ РёСЃС‚РѕС‡РЅРёРє РёР· РїСѓР»Р°
     private AudioSource GetFreeAudioSource()
     {
-        // Ищем свободный источник
+        // РС‰РµРј СЃРІРѕР±РѕРґРЅС‹Р№ РёСЃС‚РѕС‡РЅРёРє
         for (int i = 0; i < _audioSourcePool.Count; i++)
         {
             int index = (_currentPoolIndex + i) % _audioSourcePool.Count;
@@ -74,138 +74,138 @@ public class SoundManager : MonoBehaviour
                 return _audioSourcePool[index];
             }
         }
-
-        // Если все заняты, используем следующий по кругу
+ 
+        // Р•СЃР»Рё РІСЃРµ Р·Р°РЅСЏС‚С‹, РёСЃРїРѕР»СЊР·СѓРµРј СЃР»РµРґСѓСЋС‰РёР№ РїРѕ РєСЂСѓРіСѓ
         _currentPoolIndex = (_currentPoolIndex + 1) % _audioSourcePool.Count;
         return _audioSourcePool[_currentPoolIndex];
     }
-
-    // Воспроизвести звук
+ 
+    // Р’РѕСЃРїСЂРѕРёР·РІРµСЃС‚Рё Р·РІСѓРє
     public void PlaySound(AudioClip clip, float volumeMultiplier = 1f)
     {
         if (clip == null) return;
-
+ 
         AudioSource source = GetFreeAudioSource();
         source.clip = clip;
         source.volume = _masterVolume * _sfxVolume * volumeMultiplier;
         source.pitch = 1f;
         source.Play();
     }
-
-    // Воспроизвести звук с вариацией высоты
+ 
+    // Р’РѕСЃРїСЂРѕРёР·РІРµСЃС‚Рё Р·РІСѓРє СЃ РІР°СЂРёР°С†РёРµР№ РІС‹СЃРѕС‚С‹
     public void PlaySoundWithPitchVariation(AudioClip clip, float volumeMultiplier = 1f, float pitchVariation = 0.1f)
     {
         if (clip == null) return;
-
+ 
         AudioSource source = GetFreeAudioSource();
         source.clip = clip;
         source.volume = _masterVolume * _sfxVolume * volumeMultiplier;
         source.pitch = 1f + Random.Range(-pitchVariation, pitchVariation);
         source.Play();
     }
-
-    // Воспроизвести случайный звук из массива
+ 
+    // Р’РѕСЃРїСЂРѕРёР·РІРµСЃС‚Рё СЃР»СѓС‡Р°Р№РЅС‹Р№ Р·РІСѓРє РёР· РјР°СЃСЃРёРІР°
     public void PlayRandomSound(AudioClip[] clips, float volumeMultiplier = 1f)
     {
         if (clips == null || clips.Length == 0) return;
         PlaySound(clips[Random.Range(0, clips.Length)], volumeMultiplier);
     }
-
-    // Воспроизвести звук в позиции (3D звук)
+ 
+    // Р’РѕСЃРїСЂРѕРёР·РІРµСЃС‚Рё Р·РІСѓРє РІ РїРѕР·РёС†РёРё (3D Р·РІСѓРє)
     public void PlaySoundAtPosition(AudioClip clip, Vector3 position, float volumeMultiplier = 1f)
     {
         if (clip == null) return;
         AudioSource.PlayClipAtPoint(clip, position, _masterVolume * _sfxVolume * volumeMultiplier);
     }
-
-    // Удобные методы для конкретных звуков
-
-    // Игрок
+ 
+    // РЈРґРѕР±РЅС‹Рµ РјРµС‚РѕРґС‹ РґР»СЏ РєРѕРЅРєСЂРµС‚РЅС‹С… Р·РІСѓРєРѕРІ
+ 
+    // РРіСЂРѕРє
     public void PlaySwordSwing()
     {
         PlayRandomSound(_swordSwingSounds, 0.7f);
     }
-
+ 
     public void PlaySwordHit()
     {
         PlayRandomSound(_swordHitSounds, 0.8f);
     }
-
+ 
     public void PlayFootstep()
     {
         PlayRandomSound(_footstepSounds, 0.3f);
     }
-
+ 
     public void PlayPlayerHurt()
     {
         PlayRandomSound(_playerHurtSounds, 0.9f);
     }
-
+ 
     public void PlayPlayerDeath()
     {
         PlaySound(_playerDeathSound, 1f);
     }
-
-    // Враги
+ 
+    // Р’СЂР°РіРё
     public void PlayEnemyHurt()
     {
         PlayRandomSound(_enemyHurtSounds, 0.7f);
     }
-
+ 
     public void PlayEnemyDeath()
     {
         PlayRandomSound(_enemyDeathSounds, 0.8f);
     }
-
+ 
     public void PlayEnemyAttack()
     {
         PlayRandomSound(_enemyAttackSounds, 0.6f);
     }
-
-    // Снаряды
+ 
+    // РЎРЅР°СЂСЏРґС‹
     public void PlayArrowShoot()
     {
         PlaySound(_arrowShootSound, 0.6f);
     }
-
+ 
     public void PlayArrowHit()
     {
         PlaySound(_arrowHitSound, 0.5f);
     }
-
+ 
     public void PlayBombThrow()
     {
         PlaySound(_bombThrowSound, 0.7f);
     }
-
+ 
     public void PlayBombExplosion()
     {
         PlaySound(_bombExplosionSound, 1f);
     }
-
+ 
     // UI
     public void PlayButtonClick()
     {
         PlaySound(_buttonClickSound, 0.5f);
     }
-
+ 
     public void PlayPickup()
     {
         PlaySound(_pickupSound, 0.7f);
     }
-
-    // Настройки громкости
-
+ 
+    // РќР°СЃС‚СЂРѕР№РєРё РіСЂРѕРјРєРѕСЃС‚Рё
+ 
     public void SetMasterVolume(float volume)
     {
         _masterVolume = Mathf.Clamp01(volume);
     }
-
+ 
     public void SetSFXVolume(float volume)
     {
         _sfxVolume = Mathf.Clamp01(volume);
     }
-
+ 
     public float GetMasterVolume() => _masterVolume;
     public float GetSFXVolume() => _sfxVolume;
 }

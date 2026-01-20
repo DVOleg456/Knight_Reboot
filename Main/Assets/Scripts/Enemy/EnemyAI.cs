@@ -4,53 +4,53 @@ using UnityEngine;
 using UnityEngine.AI;
 using Shadows_Quest.Utils;
 using System;
-
+ 
 public class EnemyAI : MonoBehaviour
 {
-    [Header("Состояния")]
+    [Header("РЎРѕСЃС‚РѕСЏРЅРёСЏ")]
     [SerializeField] private State _startingState;
-
-    [Header("Роуминг или же враг бродит")]
+ 
+    [Header("Р РѕСѓРјРёРЅРі")]
     [SerializeField] private float _roamingDistanceMax = 7f;
     [SerializeField] private float _roamingDistanceMin = 3f;
     [SerializeField] private float _roamingTimerMax = 2f;
-
-    [Header("Преследование")]
+ 
+    [Header("РџСЂРµСЃР»РµРґРѕРІР°РЅРёРµ")]
     [SerializeField] private bool _isChasingEnemy = false;
     [SerializeField] private float _chasingDistance = 4f;
     [SerializeField] private float _chasingSpeedMultiplayer = 2f;
-
-    [Header("Атака")]
+ 
+    [Header("РђС‚Р°РєР°")]
     [SerializeField] private bool _isAttackingEnemy = false;
     [SerializeField] private float _attackingDistance = 2f;
     [SerializeField] private float _attackRate = 2f;
-    [SerializeField] private int _attackDamage = 10; // Урон от атаки врага
+    [SerializeField] private int _attackDamage = 10; // РЈСЂРѕРЅ РѕС‚ Р°С‚Р°РєРё РІСЂР°РіР°
     private float _nextAttackTime = 0f;
-
-    [Header("Звуки")]
+ 
+    [Header("Р—РІСѓРєРё")]
     [SerializeField] private AudioClip _attackSound;
     [SerializeField] private AudioClip _hurtSound;
     [SerializeField] private AudioClip _deathSound;
-
+ 
     private NavMeshAgent _navMeshAgent;
-    private HealthSystem _healthSystem; // Система здоровья врага
+    private HealthSystem _healthSystem; // РЎРёСЃС‚РµРјР° Р·РґРѕСЂРѕРІСЊСЏ РІСЂР°РіР°
     private State _currentState;
     private float _roamingTimer;
     private Vector3 _roamPosition;
     private Vector3 _startingPosition;
-
+ 
     private float _roamingSpeed;
     private float _chasingSpeed;
-
+ 
     private float _nextCheckDirectionTime = 0f;
     private float _checkDirectionDuration = 0.1f;
     private Vector3 _lastPosition;
-
-    // События
+ 
+    // РЎРѕР±С‹С‚РёСЏ
     public event EventHandler OnEnemyAttack;
     public event EventHandler OnEnemyDeath;
     public event EventHandler OnEnemyTakeHit;
-
+ 
     private enum State
     {
         Idle,
@@ -59,18 +59,18 @@ public class EnemyAI : MonoBehaviour
         Attacking,
         Death
     }
-
+ 
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.updateRotation = false;
         _navMeshAgent.updateUpAxis = false;
         _currentState = _startingState;
-
+ 
         _roamingSpeed = _navMeshAgent.speed;
         _chasingSpeed = _navMeshAgent.speed * _chasingSpeedMultiplayer;
-
-        // Получаем систему здоровья
+ 
+        // РџРѕР»СѓС‡Р°РµРј СЃРёСЃС‚РµРјСѓ Р·РґРѕСЂРѕРІСЊСЏ
         _healthSystem = GetComponent<HealthSystem>();
         if (_healthSystem != null)
         {
@@ -79,31 +79,31 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"{gameObject.name}: HealthSystem не найден!");
+            Debug.LogWarning($"{gameObject.name}: HealthSystem РЅРµ РЅР°Р№РґРµРЅ!");
         }
     }
-
+ 
     private void OnDestroy()
     {
-        // Отписываемся от событий
+        // РћС‚РїРёСЃС‹РІР°РµРјСЃСЏ РѕС‚ СЃРѕР±С‹С‚РёР№
         if (_healthSystem != null)
         {
             _healthSystem.OnDead -= HealthSystem_OnDead;
             _healthSystem.OnDamaged -= HealthSystem_OnDamaged;
         }
     }
-
-    // Обработка смерти врага
+ 
+    // РћР±СЂР°Р±РѕС‚РєР° СЃРјРµСЂС‚Рё РІСЂР°РіР°
     private void HealthSystem_OnDead(object sender, EventArgs e)
     {
         _currentState = State.Death;
         _navMeshAgent.ResetPath();
         _navMeshAgent.enabled = false;
-
-        // Вызываем событие смерти
+ 
+        // Р’С‹Р·С‹РІР°РµРј СЃРѕР±С‹С‚РёРµ СЃРјРµСЂС‚Рё
         OnEnemyDeath?.Invoke(this, EventArgs.Empty);
-
-        // Воспроизводим звук смерти
+ 
+        // Р’РѕСЃРїСЂРѕРёР·РІРѕРґРёРј Р·РІСѓРє СЃРјРµСЂС‚Рё
         if (_deathSound != null)
         {
             AudioSource.PlayClipAtPoint(_deathSound, transform.position, 0.8f);
@@ -112,19 +112,19 @@ public class EnemyAI : MonoBehaviour
         {
             SoundManager.Instance.PlayEnemyDeath();
         }
-
-        Debug.Log($"{gameObject.name}: Враг умер!");
-
-        // Уничтожаем врага через 2 секунды (после анимации)
+ 
+        Debug.Log($"{gameObject.name}: Р’СЂР°Рі СѓРјРµСЂ!");
+ 
+        // РЈРЅРёС‡С‚РѕР¶Р°РµРј РІСЂР°РіР° С‡РµСЂРµР· 2 СЃРµРєСѓРЅРґС‹ (РїРѕСЃР»Рµ Р°РЅРёРјР°С†РёРё)
         Destroy(gameObject, 2f);
     }
-
-    // Обработка получения урона
+ 
+    // РћР±СЂР°Р±РѕС‚РєР° РїРѕР»СѓС‡РµРЅРёСЏ СѓСЂРѕРЅР°
     private void HealthSystem_OnDamaged(object sender, EventArgs e)
     {
         OnEnemyTakeHit?.Invoke(this, EventArgs.Empty);
-
-        // Воспроизводим звук получения урона
+ 
+        // Р’РѕСЃРїСЂРѕРёР·РІРѕРґРёРј Р·РІСѓРє РїРѕР»СѓС‡РµРЅРёСЏ СѓСЂРѕРЅР°
         if (_hurtSound != null)
         {
             AudioSource.PlayClipAtPoint(_hurtSound, transform.position, 0.7f);
@@ -134,13 +134,16 @@ public class EnemyAI : MonoBehaviour
             SoundManager.Instance.PlayEnemyHurt();
         }
     }
-
+ 
     private void Update()
     {
+        // РќРµ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј РЅРёС‡РµРіРѕ, РµСЃР»Рё РІСЂР°Рі РјС‘СЂС‚РІ
+        if (_currentState == State.Death) return;
+ 
         StateHandler();
         MovementDirectionHandler();
     }
-
+ 
     private void StateHandler()
     {
         switch (_currentState)
@@ -169,22 +172,22 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
     }
-
+ 
     private void ChasingTarget()
     {
         _navMeshAgent.SetDestination(Player.Instance.transform.position);
     }
-
+ 
     public float GetRoamingAnimationSpeed()
     {
         return _navMeshAgent.speed / _roamingSpeed;
     }
-
+ 
     private void CheckCurrentState()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, Player.Instance.transform.position);
         State newState = State.Roaming;
-
+ 
         if (_isChasingEnemy)
         {
             if (distanceToPlayer <= _chasingDistance)
@@ -192,7 +195,7 @@ public class EnemyAI : MonoBehaviour
                 newState = State.Chasing;
             }
         }
-
+ 
         if (_isAttackingEnemy)
         {
             if (distanceToPlayer <= _attackingDistance)
@@ -200,7 +203,7 @@ public class EnemyAI : MonoBehaviour
                 newState = State.Attacking;
             }
         }
-
+ 
         if (newState != _currentState)
         {
             if (newState == State.Chasing)
@@ -217,11 +220,11 @@ public class EnemyAI : MonoBehaviour
             {
                 _navMeshAgent.ResetPath();
             }
-
+ 
             _currentState = newState;
         }
     }
-
+ 
     public bool IsRunning()
     {
         if (_navMeshAgent.velocity == Vector3.zero)
@@ -233,15 +236,15 @@ public class EnemyAI : MonoBehaviour
             return true;
         }
     }
-
+ 
     private void AttackingTarget()
     {
         if (Time.time > _nextAttackTime)
         {
-            // Вызываем событие атаки (для анимации)
+            // Р’С‹Р·С‹РІР°РµРј СЃРѕР±С‹С‚РёРµ Р°С‚Р°РєРё (РґР»СЏ Р°РЅРёРјР°С†РёРё)
             OnEnemyAttack?.Invoke(this, EventArgs.Empty);
-
-            // Воспроизводим звук атаки
+ 
+            // Р’РѕСЃРїСЂРѕРёР·РІРѕРґРёРј Р·РІСѓРє Р°С‚Р°РєРё
             if (_attackSound != null)
             {
                 AudioSource.PlayClipAtPoint(_attackSound, transform.position, 0.6f);
@@ -250,22 +253,22 @@ public class EnemyAI : MonoBehaviour
             {
                 SoundManager.Instance.PlayEnemyAttack();
             }
-
-            // Наносим урон игроку
+ 
+            // РќР°РЅРѕСЃРёРј СѓСЂРѕРЅ РёРіСЂРѕРєСѓ
             if (Player.Instance != null && !Player.Instance.IsDead())
             {
                 HealthSystem playerHealth = Player.Instance.GetHealthSystem();
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage(_attackDamage);
-                    Debug.Log($"{gameObject.name}: Нанесён урон игроку ({_attackDamage} HP)");
+                    Debug.Log($"{gameObject.name}: РќР°РЅРµСЃС‘РЅ СѓСЂРѕРЅ РёРіСЂРѕРєСѓ ({_attackDamage} HP)");
                 }
             }
-
+ 
             _nextAttackTime = Time.time + _attackRate;
         }
     }
-
+ 
     private void MovementDirectionHandler()
     {
         if (Time.time > _nextCheckDirectionTime)
@@ -278,12 +281,12 @@ public class EnemyAI : MonoBehaviour
             {
                 ChangeFacingDirection(transform.position, Player.Instance.transform.position);
             }
-
+ 
             _lastPosition = transform.position;
             _nextCheckDirectionTime = Time.time + _checkDirectionDuration;
         }
     }
-
+ 
     private void Roaming()
     {
         _startingPosition = transform.position;
@@ -291,12 +294,12 @@ public class EnemyAI : MonoBehaviour
         ChangeFacingDirection(_startingPosition, _roamPosition);
         _navMeshAgent.SetDestination(_roamPosition);
     }
-
+ 
     private Vector3 GetRoamingPosition()
     {
         return _startingPosition + Utils.GetRandomDir() * UnityEngine.Random.Range(_roamingDistanceMin, _roamingDistanceMax);
     }
-
+ 
     private void ChangeFacingDirection(Vector3 sourcePosition, Vector3 targetPosition)
     {
         if (sourcePosition.x > targetPosition.x)
@@ -308,20 +311,20 @@ public class EnemyAI : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
-
-    // Проверка состояния атаки
+ 
+    // РџСЂРѕРІРµСЂРєР° СЃРѕСЃС‚РѕСЏРЅРёСЏ Р°С‚Р°РєРё
     public bool IsAttacking()
     {
         return _currentState == State.Attacking;
     }
-
-    // Проверка состояния смерти
+ 
+    // РџСЂРѕРІРµСЂРєР° СЃРѕСЃС‚РѕСЏРЅРёСЏ СЃРјРµСЂС‚Рё
     public bool IsDead()
     {
         return _currentState == State.Death;
     }
-
-    // Получить систему здоровья
+ 
+    // РџРѕР»СѓС‡РёС‚СЊ СЃРёСЃС‚РµРјСѓ Р·РґРѕСЂРѕРІСЊСЏ
     public HealthSystem GetHealthSystem()
     {
         return _healthSystem;
