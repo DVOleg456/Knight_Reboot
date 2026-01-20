@@ -163,12 +163,22 @@ public class Bomb : Projectile
  
     protected override void OnHitTarget(Collider2D target)
     {
+        // Игнорируем коллизии во время полёта по дуге - взрываемся только при приземлении
+        if (arcTrajectory && isFlying && flightProgress < 0.95f)
+        {
+            return;
+        }
         // При попадании в цель - взрываемся
         Explode();
     }
- 
+
     protected override void OnHitObstacle(Collider2D obstacle)
     {
+        // Игнорируем коллизии во время полёта по дуге - взрываемся только при приземлении
+        if (arcTrajectory && isFlying && flightProgress < 0.95f)
+        {
+            return;
+        }
         // При попадании в препятствие - взрываемся
         Explode();
     }
@@ -191,6 +201,8 @@ public class Bomb : Projectile
         if (explosionEffectPrefab != null)
         {
             GameObject effect = Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+            // Активируем эффект (prefab или дочерний объект может быть неактивен)
+            effect.SetActive(true);
             Destroy(effect, 2f);
         }
  

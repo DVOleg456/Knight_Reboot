@@ -233,6 +233,10 @@ public class BomberEnemyAI : MonoBehaviour
             Vector3 targetPosition = Player.Instance.transform.position;
 
             GameObject bombObj = Instantiate(_bombPrefab, spawnPosition, Quaternion.identity);
+
+            // Активируем бомбу (prefab может быть неактивен)
+            bombObj.SetActive(true);
+
             Bomb bomb = bombObj.GetComponent<Bomb>();
 
             if (bomb != null)

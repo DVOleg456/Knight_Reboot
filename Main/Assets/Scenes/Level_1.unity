@@ -296,6 +296,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &93458283
@@ -346,6 +348,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &145957618
@@ -532,6 +536,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &186542268
@@ -915,6 +921,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &460084372
@@ -965,6 +973,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &476031728
@@ -1072,6 +1082,8 @@ MonoBehaviour:
   wallThickness: 0.3
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &536346577
@@ -1122,6 +1134,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &558768567
@@ -1172,6 +1186,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &568655145
@@ -1222,6 +1238,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &579164591
@@ -1401,6 +1419,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &667282865
@@ -1508,6 +1528,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &707096777
@@ -1793,6 +1815,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &828450945
@@ -1848,6 +1872,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &882695778
@@ -2160,6 +2186,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1044380239
@@ -2268,6 +2296,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1082997553
@@ -2635,6 +2665,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1325942724
@@ -2700,6 +2732,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1547363032
@@ -4907,6 +4941,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1707248727
@@ -4957,6 +4993,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1726582447
@@ -9919,6 +9957,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1763435122
@@ -10047,6 +10087,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1849233278
@@ -10097,6 +10139,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1879781478
@@ -10204,6 +10248,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1951905781
@@ -10254,6 +10300,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &1963925033
@@ -10479,6 +10527,8 @@ MonoBehaviour:
   wallThickness: 0.14
   wallHeight: 1
   boundaryLayer: Obstacle
+  rebuildNavMesh: 1
+  navMeshSurface: {fileID: 0}
   showGizmos: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &2058792897
@@ -10754,6 +10804,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ba48c70e1c02114db0df64f84dcae9d, type: 3}
+--- !u!1001 &4927957211368160719
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 480270798677792098, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_Name
+      value: Skeleton_Bomber
+      objectReference: {fileID: 0}
+    - target: {fileID: 5877971550377497980, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6931668
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.02684918
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 363d334137f977e40b032927d26b02d2, type: 3}
 --- !u!1001 &8542084295086608643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10827,4 +10938,5 @@ SceneRoots:
   - {fileID: 1034168879}
   - {fileID: 662288584}
   - {fileID: 211591203}
+  - {fileID: 4927957211368160719}
   - {fileID: 4235614011359087018}
