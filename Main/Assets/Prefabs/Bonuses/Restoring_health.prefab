@@ -151,8 +151,8 @@ MonoBehaviour:
   duration: 5
   bonusIcon: {fileID: 21300000, guid: 293e9a586c665cb4485e64fde35e7bf1, type: 3}
   isInstant: 0
-  rotationSpeed: 50
+  rotationSpeed: 0
   floatAmplitude: 0.2
   floatFrequency: 2
   pickupSound: {fileID: 0}
-  healAmount: 25
+  healAmount: 50

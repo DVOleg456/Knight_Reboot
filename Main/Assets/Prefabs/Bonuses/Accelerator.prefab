@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonusName: Bonus
-  duration: 10
-  bonusIcon: {fileID: 0}
+  duration: 15
+  bonusIcon: {fileID: 21300000, guid: 9022d7475e1f6bc43a3c4ce42f23c27e, type: 3}
   isInstant: 0
-  rotationSpeed: 50
+  rotationSpeed: 0
   floatAmplitude: 0.2
   floatFrequency: 2
   pickupSound: {fileID: 0}

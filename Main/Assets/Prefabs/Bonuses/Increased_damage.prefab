@@ -148,11 +148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonusName: Bonus
-  duration: 10
+  duration: 15
   bonusIcon: {fileID: 21300000, guid: 44b9f2b424422d4479569504e1d7fe36, type: 3}
   isInstant: 0
-  rotationSpeed: 50
+  rotationSpeed: 0
   floatAmplitude: 0.2
   floatFrequency: 2
   pickupSound: {fileID: 0}
-  damageMultiplier: 2
+  damageMultiplier: 3

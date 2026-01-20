@@ -198,7 +198,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.282
-  m_Speed: 2.3
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -223,16 +223,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingState: 1
-  _roamingDistanceMax: 7
-  _roamingDistanceMin: 3
-  _roamingTimerMax: 2
+  _roamingDistanceMax: 1.5
+  _roamingDistanceMin: 0.5
+  _roamingTimerMax: 1.5
   _isChasingEnemy: 1
-  _chasingDistance: 4
-  _chasingSpeedMultiplayer: 2
+  _chasingDistance: 2.5
+  _chasingSpeedMultiplayer: 1.5
   _isAttackingEnemy: 1
-  _attackingDistance: 1.5
-  _attackRate: 2
-  _attackDamage: 10
+  _attackingDistance: 1.2
+  _attackRate: 1
+  _attackDamage: 5
   _attackSound: {fileID: 0}
   _hurtSound: {fileID: 0}
   _deathSound: {fileID: 0}

@@ -199,7 +199,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -224,18 +224,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingState: 1
-  _roamingDistanceMax: 7
-  _roamingDistanceMin: 3
+  _roamingDistanceMax: 3
+  _roamingDistanceMin: 2
   _roamingTimerMax: 2
   _isChasingEnemy: 1
-  _detectionDistance: 10
+  _detectionDistance: 6.47
   _chasingSpeedMultiplier: 1.5
-  _preferredDistance: 6
-  _minDistance: 4
+  _preferredDistance: 2.85
+  _minDistance: 1.8
   _isAttackingEnemy: 1
-  _attackDistance: 8
-  _attackRate: 2
-  _attackDamage: 15
+  _attackDistance: 6.47
+  _attackRate: 1.5
+  _attackDamage: 10
   _arrowPrefab: {fileID: 3620105002610167301, guid: 036756840611fa94fa36766fb458e596, type: 3}
   _shootPoint: {fileID: 3425424506271693481}
   _shootSound: {fileID: 8300000, guid: 8031c09a3f4ed174caff514945aebf08, type: 3}
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb7b4cddd8cca44ea3ac72bc36a0c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 75
   hurtSound: {fileID: 8300000, guid: 845bb4338e736dc4f930cd2dfe2166f4, type: 3}
   deathSound: {fileID: 0}
   healSound: {fileID: 0}
