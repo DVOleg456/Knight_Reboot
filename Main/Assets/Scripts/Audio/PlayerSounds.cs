@@ -138,7 +138,7 @@ public class PlayerSounds : MonoBehaviour
             _audioSource.PlayOneShot(_deathSound, 1f);
         }
     }
- 
+
     // Воспроизвести звук атаки (вызывается из PlayerCombat или анимации)
     public void PlayAttackSound()
     {
