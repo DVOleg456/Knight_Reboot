@@ -10442,8 +10442,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 1080518745}
     m_Modifications:
     - target: {fileID: 161054015825043731, guid: 1d862b87cdfad244aac921df27f7f490, type: 3}
-      propertyPath: targetSceneName
-      value: Level_2
+      propertyPath: teleportSound
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1471580330078168594, guid: 1d862b87cdfad244aac921df27f7f490, type: 3}
       propertyPath: m_Name
@@ -10815,10 +10815,6 @@ PrefabInstance:
     - target: {fileID: 480270798677792098, guid: 363d334137f977e40b032927d26b02d2, type: 3}
       propertyPath: m_Name
       value: Skeleton_Bomber
-      objectReference: {fileID: 0}
-    - target: {fileID: 5877971550377497980, guid: 363d334137f977e40b032927d26b02d2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8638487000403942174, guid: 363d334137f977e40b032927d26b02d2, type: 3}
       propertyPath: m_LocalPosition.x

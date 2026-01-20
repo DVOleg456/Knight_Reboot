@@ -298,6 +298,10 @@ public class RangedEnemyAI : MonoBehaviour
             {
                 AudioSource.PlayClipAtPoint(_shootSound, transform.position);
             }
+            else if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlayArrowShoot();
+            }
         }
     }
  

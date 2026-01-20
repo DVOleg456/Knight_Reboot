@@ -48,6 +48,10 @@ public abstract class Projectile : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(flySound, transform.position, 0.5f);
         }
+        else if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayArrowShoot();
+        }
     }
  
     protected virtual void Update()
@@ -137,7 +141,11 @@ public abstract class Projectile : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(hitSound, transform.position);
         }
- 
+        else if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayArrowHit();
+        }
+
         // Вызываем событие
         OnProjectileHit?.Invoke(this, EventArgs.Empty);
  
@@ -153,7 +161,11 @@ public abstract class Projectile : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(hitSound, transform.position, 0.5f);
         }
- 
+        else if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayArrowHit();
+        }
+
         DestroyProjectile();
     }
  

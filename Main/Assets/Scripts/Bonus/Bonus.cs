@@ -72,6 +72,10 @@ public abstract class Bonus : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(pickupSound, transform.position);
         }
+        else if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayPickup();
+        }
 
         // Применяем эффект
         ApplyEffect(player);
